@@ -18,9 +18,10 @@ const cargarDatos = async(currentPage) =>{
             contenedorPadre.innerHTML += `
                 <div class="col-3 pb-2 d-flex justify-content-center" data-id=${personaje.id}>
                     <div class="card bg-dark p-2 text-dark bg-opacity-10 mx-2 my-2" style="width: 500px;
+                     overflow: visible; position: relative;
                      border: none;">
                         <img
-                            class="card-img-top p-2" alt=${personaje.name}
+                            class="card-img-top p-2 img-hover" alt=${personaje.name}
                             style="width: 100%; height: 400px; object-fit: contain;"
                             src=${personaje.image}
                         />

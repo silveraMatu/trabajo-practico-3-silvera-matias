@@ -8,3 +8,14 @@ body{
     color: #fff !important;
     opacity: 0.5 !important;
 }
+
+.img-hover{
+  transition: transform 0.3s ease;
+  z-index: 1;
+  position: relative;
+}
+
+.img-hover:hover{
+  transform: scale(1.2);
+  z-index: 10;
+}
