@@ -6,5 +6,5 @@ body{
 
 .form-control::placeholder{
     color: #fff !important;
-    opacity: 1 !important;
+    opacity: 0.5 !important;
 }
