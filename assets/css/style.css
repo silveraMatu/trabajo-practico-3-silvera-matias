@@ -1,0 +1,10 @@
+body{
+      background-image: url('../img/fondo_manga_db.jpg');
+      background-size: auto;
+      background-repeat: repeat;
+}
+
+.form-control::placeholder{
+    color: #fff !important;
+    opacity: 1 !important;
+}
