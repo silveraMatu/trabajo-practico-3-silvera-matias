@@ -71,7 +71,7 @@ const renderizarPersonajes = (personajes, limpiar = false) => {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                   </div>
                   <div class="modal-body d-flex gap-4 flex-wrap">
-                    <img src="${personaje.image}" alt="${personaje.name}" style="width: 250px; height: auto; object-fit: contain;">
+                    <img class="mx-auto" src="${personaje.image}" alt="${personaje.name}" style="width: 150px; height: auto; object-fit: contain;">
                     <div>
                         <p><strong>Nombre:</strong> ${personaje.name}</p>
                         <p><strong>Género:</strong> ${personaje.gender}</p>
@@ -89,7 +89,7 @@ const renderizarPersonajes = (personajes, limpiar = false) => {
     });
 };
 
-// Búsqueda por nombre
+//Búsqueda por nombre
 searchButton.addEventListener('click', () => {
     const termino = searchInput.value.trim().toLowerCase();
 
@@ -112,7 +112,7 @@ searchButton.addEventListener('click', () => {
 
 // Permitir Enter en el input para buscar
 searchButton.addEventListener('click', (e) => {
-    e.preventDefault(); // ⛔ Previene que el formulario recargue la página
+    e.preventDefault(); //Previene que se recargue la pagina
 
     const termino = searchInput.value.trim().toLowerCase();
 
