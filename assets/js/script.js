@@ -2,13 +2,15 @@ let currentPage = 1;
 let loading = false;
 
 const urlDragonBall = "https://dragonball-api.com/api/characters";
-
+const contenedorPadre = document.getElementById('contenedor-data');
 
 const cargarDatos = async(currentPage) =>{
     loading = true
     try{
         const response = await fetch(`${urlDragonBall}?page=${currentPage}`);
-        if(!response.ok) throw new error('Tuvimos un problema con la API');
+        if(!response.ok) {
+            throw "Tuvimos un problema con la API";
+        };
 
         const data = await response.json();
         const dataPersonajes = data.items;
@@ -27,7 +29,10 @@ const cargarDatos = async(currentPage) =>{
         })
         
     } catch (error){
-        console.error(error);
+        contenedorPadre.innerHTML = `
+            <h1 class="text-center my-3">${error}</h1>
+            <img class="mx-auto" src="assets/img/error-image.png" alt="error-image"
+            style="width: 400px"/>`
     }
 
 }
@@ -37,7 +42,7 @@ const cargarDatos = async(currentPage) =>{
 const renderizarPersonajes = (personajes)=>{
 
         personajes.forEach(personaje => {
-            const contenedorPadre = document.getElementById('contenedor-data');
+           
             contenedorPadre.innerHTML += `
                 <div class="col-3 pb-2 d-flex justify-content-center" data-id=${personaje.id}>
                     <div class="card bg-dark p-2 text-dark bg-opacity-10 mx-2 my-2" style="width: 500px;
