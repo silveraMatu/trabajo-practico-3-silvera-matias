@@ -2,7 +2,7 @@ let currentPage = 1;
 let loading = false;
 
 const urlDragonBall = "https://dragonball-api.com/api/characters";
-const contenedorPadre = document.getElementById('contenedor-data');
+
 
 const cargarDatos = async(currentPage) =>{
     loading = true
@@ -12,9 +12,32 @@ const cargarDatos = async(currentPage) =>{
 
         const data = await response.json();
         const dataPersonajes = data.items;
-        console.log(data);
+        console.log(dataPersonajes)
+        
         //Mostrar items en el documento.
-        dataPersonajes.forEach(personaje => {
+        renderizarPersonajes(dataPersonajes);
+
+        window.addEventListener('scroll', ()=>{
+            const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
+
+            if(!loading && scrollTop + scrollHeight >= clientHeight - 5){
+                currentPage++;
+                cargarDatos(currentPage);
+            }
+        })
+        
+    } catch (error){
+        console.error(error);
+    }
+
+}
+
+//Funcion renderizar personajes
+
+const renderizarPersonajes = (personajes)=>{
+
+        personajes.forEach(personaje => {
+            const contenedorPadre = document.getElementById('contenedor-data');
             contenedorPadre.innerHTML += `
                 <div class="col-3 pb-2 d-flex justify-content-center" data-id=${personaje.id}>
                     <div class="card bg-dark p-2 text-dark bg-opacity-10 mx-2 my-2" style="width: 500px;
@@ -33,24 +56,17 @@ const cargarDatos = async(currentPage) =>{
                     </div>
                 </div>
                 `;
-                loading = false;
-        });
-
-        window.addEventListener('scroll', ()=>{
-            const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
-
-            if(!loading && scrollTop + scrollHeight >= clientHeight - 5){
-                currentPage++;
-                cargarDatos(currentPage);
-            }
-        })
-        
-    } catch (error){
-        console.error(error);
-    }
+            });
+        loading = false;
 
 }
+//Barra de busqueda funcional
+
+let inputUser = document.getElementById('form-control');
+const btnBuscar = document.getElementById('boton-buscar');
 
 
 cargarDatos(currentPage);
+
+
 
